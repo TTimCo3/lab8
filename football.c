@@ -7,7 +7,7 @@ int main(){
     while(score!=1){
         printf("Enter the NFL score (Enter 1 to stop): ");
         int input = scanf("%d", &score);
-        if(score>0 && score!=1 && input==1){
+        if(score>=0 && score!=1 && input==1){
             printf("Possible combinations of scoring plays if a team's score is %d:\n", score);
             for(int safety=0; safety<=(score/2); safety++){
                 for(int fg=0; fg<=(score/3); fg++){
