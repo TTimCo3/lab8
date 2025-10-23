@@ -3,9 +3,11 @@
 #include <stdio.h>
 
 int main(){
+    char newScale;
+    char oldScale;
+    float temp=0;
     int exit=0;
     while(exit==0){
-        float temp=0;
         printf("Enter the temperature value: ");
         int input = scanf("%f", &temp);
         if(input==1){
@@ -13,16 +15,15 @@ int main(){
         }
         else{
             printf("invalid input.\n");
-            while(getchar!='\n');
+            while(getchar()!='\n');
         }
     }
     exit=0;
     while(exit==0){
-        char oldScale;
         printf("Enter the original scale (C, F, or K): ");
-        scanf("%c", &oldScale);
+        scanf(" %c", &oldScale);
         if(oldScale!='C' && oldScale!='F' && oldScale!='K'){
-            printf("Invalid input, try again.\n");
+            printf("Invalid input. It's case sensitive.\n");
         }
         else{
             exit=1;
@@ -30,24 +31,23 @@ int main(){
     }
     exit=0;
     while(exit==0){
-        char newScale;
-        printf("Enter the scale to conver to (C, F, or K): ");
-        scanf("%c", &newScale)
+        printf("Enter the scale to convert to (C, F, or K): ");
+        scanf(" %c", &newScale);
         if(newScale!='C' && newScale!='F' && newScale!='K'){
-            printf("Invalid input, try again.\n");
+            printf("Invalid input. It's case sensitive.\n");
         }
         else{
             exit=1;
         }
     }
     if(newScale=='C'){
-        convert2C(temp, oldScale)
+        tempReport(convert2C(temp, oldScale), temp, oldScale, newScale);
     }
-    elif(newScale=='F'){
-        convert2F(temp, oldScale);
+    else if(newScale=='F'){
+        tempReport(convert2F(temp, oldScale), temp, oldScale, newScale);
     }
     else{
-        convert2K(temp, oldScale);
+        tempReport(convert2K(temp, oldScale), temp, oldScale, newScale);
     }
     return 0;
 }

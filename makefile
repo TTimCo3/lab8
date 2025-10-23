@@ -1,14 +1,18 @@
 CC=g++
 
 CFLAGS=-c -Wall
-OBJECTS= football.o methods.o
-all:football
+ballObjects= football.o methods.o
+tempObjects=temperature.o methods.o
+all:football temperature
 
-football: $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@
+football: $(ballObjects)
+	$(CC) $(ballObjects) -o $@
+
+temperature: $(tempObjects)
+	$(CC) $(tempObjects) -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) $<
 
 clean:
-	rm -rf *.o football
+	rm -rf *.o football temperature

@@ -7,55 +7,69 @@ int checkPrint(int td2pt, int tdfg, int td, int fg, int safety, int score){
     return 0;
 }
 
-int convert2C(float temp, char oldScale){
+float convert2C(float temp, char oldScale){
+    float newTemp=0;
     if(oldScale=='C'){
-        temp
+        newTemp=temp;
     }
-    elif(oldScale=='F'){
-
+    else if(oldScale=='F'){
+        newTemp=((temp-32)*(5.0/9.0));
     }
     else{
-
+        newTemp=(temp-273.15);
     }
+    return newTemp;
 }
 
-int convert2F(float temp, char oldScale){
+float convert2F(float temp, char oldScale){
+    float newTemp=0;
     if(oldScale=='C'){
-
+        newTemp=(temp*(9.0/5.0))+32;
     }
-    elif(oldScale=='F'){
-
+    else if(oldScale=='F'){
+        newTemp=temp;
     }
     else{
-        
+        newTemp=((temp-273.15)*(9.0/5.0))+32;
     }
+    return newTemp;
 }
 
-int convert2K(float temp, char oldScale){
+float convert2K(float temp, char oldScale){
+    float newTemp=0;
     if(oldScale=='C'){
-
+        newTemp=temp+273.15;
     }
-    elif(oldScale=='F'){
-
+    else if(oldScale=='F'){
+        newTemp=((temp-32)*(5.0/9.0))+273.15;
     }
     else{
-        
+        newTemp=temp;
     }
+    return newTemp;
 }
 
-tempReport(float newTemp, float oldTemp){
-    float checkTemp=convert2C(oldTemp)
-    printf("Converted temperature: %f F\n", newTemp);
+void tempReport(float newTemp, float oldTemp, char oldScale, char newScale){
+    float checkTemp=convert2C(oldTemp, oldScale);
+    printf("Converted temperature: %.2f %c\n", newTemp, newScale);
     if(checkTemp<0){
-
+        printf("Temperature category: Freezing\n");
+        printf("Weather advisory: Get cozy indoors!\n");
     }
-    elif(checkTemp>=0 && checkTemp<10){
-
+    else if(checkTemp>=0 && checkTemp<10){
+        printf("Temperature category: Cold\n");
+        printf("Weather advisory: Wear a jacket!\n");
     }
-    elif(checkTemp>=10 && checkTemp<25){
-
+    else if(checkTemp>=10 && checkTemp<25){
+        printf("Temperature category: Comfortable\n");
+        printf("Weather advisory: Enjoy the day!\n");
     }
-    elif(checkTemp>=25 && checkTemp<35){
-
+    else if(checkTemp>=25 && checkTemp<35){
+        printf("Temperature category: Hot\n");
+        printf("Weather advisory: Drink lots of water!\n");
+    }
+    else{
+        printf("Temperature category: Extreme Heat\n");
+        printf("Weather advisory: Stay indoors!\n");
     }
 }
